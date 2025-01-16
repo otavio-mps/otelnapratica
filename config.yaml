@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=./config-schema.yaml
+subscriptions:
+  plans_endpoint: ":8081"

@@ -1,0 +1,44 @@
+type: object
+properties:
+  payments:
+    type: object
+    properties:
+      subscriptions_endpoint:
+        type: string
+      sqlite:
+        type: object
+        properties:
+          dsn:
+            type: string
+      nats:
+        type: object
+        properties:
+          endpoint:
+            type: string
+          subject:
+            type: string
+          stream:
+            type: string
+          consumer_name:
+            type: string
+  subscriptions:
+    type: object
+    properties:
+      users_endpoint:
+        type: string
+      plans_endpoint:
+        type: string
+  plans:
+    type: object
+  users:
+    type: object
+  server:
+    type: object
+    properties:
+      endpoint:
+        type: object
+        properties:
+          grpc:
+            type: string
+          http:
+            type: string

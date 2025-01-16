@@ -1,0 +1,71 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: users
+    main: ./cmd/users
+    binary: users
+    env:
+      - CGO_ENABLED=0
+
+  - id: plans
+    main: ./cmd/plans
+    binary: plans
+    env:
+      - CGO_ENABLED=0
+
+  - id: subscriptions
+    main: ./cmd/subscriptions
+    binary: subscriptions
+    env:
+      - CGO_ENABLED=0
+
+  - id: payments
+    main: ./cmd/payments
+    binary: payments
+    env:
+      - CGO_ENABLED=0
+
+archives:
+  - format: binary
+
+dockers:
+  - id: users
+    image_templates:
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/users:latest"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/users:{{ .Tag }}"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/users:v{{ .Major }}"
+    ids:
+      - users
+    dockerfile: "./cmd/users/Dockerfile"
+
+  - id: plans
+    image_templates:
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/plans:latest"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/plans:{{ .Tag }}"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/plans:v{{ .Major }}"
+    ids:
+      - plans
+    dockerfile: "./cmd/plans/Dockerfile"
+
+  - id: subscriptions
+    image_templates:
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/subscriptions:latest"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/subscriptions:{{ .Tag }}"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/subscriptions:v{{ .Major }}"
+    ids:
+      - subscriptions
+    dockerfile: "./cmd/subscriptions/Dockerfile"
+
+  - id: payments
+    image_templates:
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/payments:latest"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/payments:{{ .Tag }}"
+      - "ghcr.io/dosedetelemetria/projeto-otel-na-pratica/payments:v{{ .Major }}"
+    ids:
+      - payments
+    dockerfile: "./cmd/payments/Dockerfile"
+
