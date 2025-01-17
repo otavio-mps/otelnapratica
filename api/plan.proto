@@ -1,0 +1,65 @@
+// Copyright The OpenTelemetry Authors
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+package api;
+
+option go_package = "./api";
+
+service PlanService {
+  rpc Get (GetRequest) returns (GetResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {}
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {}
+  rpc Create (CreateRequest) returns (CreateResponse) {}
+  rpc Update (UpdateRequest) returns (UpdateResponse) {}
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  Plan plan = 1;
+}
+
+message ListRequest {
+}
+
+message ListResponse {
+  repeated Plan plans = 1;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  
+}
+
+message CreateRequest {
+  Plan plan = 1;
+}
+
+message CreateResponse {
+  Plan plan = 1;
+}
+
+message UpdateRequest {
+  Plan plan = 1;
+}
+
+message UpdateResponse {
+  Plan plan = 1;
+}
+
+message Plan {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  int32 price = 4;
+  int32 version = 5;
+  string created_at = 6;
+  string updated_at = 7;
+  string deleted_at = 8;
+}

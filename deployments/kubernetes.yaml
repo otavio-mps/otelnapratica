@@ -1,0 +1,138 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+      - name: users
+        image: ghcr.io/dosedetelemetria/projeto-otel-na-pratica/users:latest
+        ports:
+        - containerPort: 8081
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users
+spec:
+  selector:
+    app: users
+  ports:
+  - name: http
+    port: 8081
+    targetPort: 8081
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plans
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plans
+  template:
+    metadata:
+      labels:
+        app: plans
+    spec:
+      containers:
+      - name: plans
+        image: ghcr.io/dosedetelemetria/projeto-otel-na-pratica/plans:latest
+        ports:
+        - containerPort: 8082
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plans
+spec:
+  selector:
+    app: plans
+  ports:
+  - name: http
+    port: 8082
+    targetPort: 8082
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscriptions
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscriptions
+  template:
+    metadata:
+      labels:
+        app: subscriptions
+    spec:
+      containers:
+      - name: subscriptions
+        image: ghcr.io/dosedetelemetria/projeto-otel-na-pratica/subscriptions:latest
+        ports:
+        - containerPort: 8083
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subscriptions
+spec:
+  selector:
+    app: subscriptions
+  ports:
+  - name: http
+    port: 8083
+    targetPort: 8083
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+      - name: payments
+        image: ghcr.io/dosedetelemetria/projeto-otel-na-pratica/payments:latest
+        ports:
+        - containerPort: 8084
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments
+spec:
+  selector:
+    app: payments
+  ports:
+  - name: http
+    port: 8084
+    targetPort: 8084
+  type: ClusterIP
